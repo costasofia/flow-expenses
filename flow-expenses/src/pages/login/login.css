@@ -1,0 +1,11 @@
+*{
+    background-color: aqua;
+}
+
+.container-login{
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 20px;
+    box-shadow: 5px 5px 5px 2px grey;
+    background-color: aliceblue;
+}
