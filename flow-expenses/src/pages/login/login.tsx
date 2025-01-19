@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./login.css";
 import Input from "../../components/input/input";
+import { IoPersonOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -48,23 +49,24 @@ function Login() {
         const users = result.data;
         let userFounded = false;
         for (let user of users) {
-            console.log('ola')
+          console.log("ola");
           if (user.email === formData.email) {
             userFounded = true;
             console.log("user encontrado");
-             if(user.password.toString() === formData.password){
-                alert('Login feito com sucesso')
-                navigate("/home");
-                return;
-             }else{
-                validationErrors.password = 'Password não encontrada';
-                setErrors(validationErrors);
-                setValid(false);
-             }
+            if (user.password.toString() === formData.password) {
+              alert("Login feito com sucesso");
+              localStorage.setItem("idUser", user.id);
+              navigate("/home");
+              return;
+            } else {
+              validationErrors.password = "Password não encontrada";
+              setErrors(validationErrors);
+              setValid(false);
+            }
           }
         }
         if (!userFounded) {
-         validationErrors.email='Email errado'
+          validationErrors.email = "Email errado";
         }
         setErrors(validationErrors);
         setValid(false);
@@ -79,12 +81,17 @@ function Login() {
   return (
     <div className="container-login">
       <form onSubmit={submit}>
+        <div className="icon-login">
+          <IoPersonOutline size={48} />
+        </div>
+        <h1 className="title-login">FlowExpenses</h1>
         <Input
           label="Email:"
           type="email"
           name="email"
           autoComplete="false"
           onChange={handleChangeInput}
+          value={formData.email}
         />
         {errors.email && <span>{errors.email}</span>}
         <Input
@@ -93,6 +100,7 @@ function Login() {
           name="password"
           autoComplete="false"
           onChange={handleChangeInput}
+          value={formData.password}
         />
         {errors.password && <span>{errors.password}</span>}
         <div>
