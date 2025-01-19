@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Home from "../pages/home/home";
 import Login from "../pages/login/login";
+import Expenses from "../pages/expenses/expenses";
 function RouteList() {
   
   function ProtectedRoute({ children }: { children: JSX.Element }) {
@@ -21,6 +22,14 @@ function RouteList() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="/expenses"
+          element={
+            <ProtectedRoute>
+              <Expenses />
             </ProtectedRoute>
           }
         />

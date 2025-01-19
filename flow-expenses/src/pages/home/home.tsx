@@ -7,29 +7,26 @@ import { TfiArrowCircleDown, TfiArrowCircleUp } from "react-icons/tfi";
 import "./home.css";
 import CashFlow from "../../components/table/cash-flow.table";
 import { Transaction, Categories } from "../../interfaces/interfaces";
+import { useNavigate } from "react-router-dom";
 import CategoriesTable from "../../components/table/categories-table";
 import NewCategory from "../new-category/new-category";
+import Layout from "../../components/layout/layout";
 
 function Home() {
+  const navigate = useNavigate();
   const [data, setData] = useState<Transaction[]>([]);
   const [dataCategories, setDataCategories] = useState<Categories[]>([]);
   const [totalExpenses, setTotalExpenses] = useState({});
   const [totalReceipts, setTotalReceipts] = useState({});
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showMessage, setShowMessage] = useState(false);
+  const id: string| null =localStorage?.getItem('idUser');
+  const headersCashFlow = ["","Descrição", "Valor", "Data", "Categoria"];
+  const headersCategory = ["Categorias"]
 
-  
-   const id: string| null =localStorage?.getItem('idUser')
   function toggleModal() {
     setShowModal(!showModal);
   }
-
-  const [openSideBar, setOpenSideBar] = useState(false);
-    function toggleSideBar(){
-        setOpenSideBar(!openSideBar);
-    }
-  const headersCashFlow = ["","Descrição", "Valor", "Data", "Categoria"];
-  const headersCategory = ["Categorias"]
   function getExpenses(): Promise<Transaction[]> {
     return axios
     .get<Transaction[]>("http://localhost:3000/expenses", {
@@ -65,11 +62,7 @@ function Home() {
     return new Date(day, month - 1, year);
   }
 
-  function handleLogout() {
-    localStorage.removeItem('idUser');
-    console.log('idUser após logout:', localStorage.getItem('idUser')); // Deve ser null
-    window.location.href = '/login';    
-  }
+ 
   useEffect(() => {
     const fetchData = async () => {
       const expenses = await getExpenses();
@@ -105,11 +98,14 @@ function Home() {
     return category?.name;
   }
 
+  function navigateToExpenses(){
+    navigate("/expenses");
+  }
   
   console.log(data);
   return (
     <div>
-      <NavBar statusSideBar={openSideBar} toggleSideBar={toggleSideBar} title="FlowExpenses" handleLogout={handleLogout}></NavBar>
+      <Layout></Layout>
       <div className="box">
         <div className="container-box">
           <div className="container-leftside">
@@ -126,7 +122,7 @@ function Home() {
           <div className="container-rightside">
             <div className="section">
               <h1>Despesas</h1>
-              <button
+              <button onClick={navigateToExpenses}
                 onMouseEnter={() => setShowMessage(true)}
                 onMouseLeave={() => setShowMessage(false)}
               >

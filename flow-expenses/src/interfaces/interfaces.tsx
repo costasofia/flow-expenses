@@ -12,4 +12,12 @@ export interface Categories {
   id: number;
   name: string;
 }
-  
+
+export interface Expenses {
+  id: number;
+  value: number;
+  date: string;
+  description: string;
+  idCategories: number;
+  idUser: number;
+}
