@@ -1,0 +1,19 @@
+table {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th,
+  td {
+    padding: 10px;
+  }
+  table td:first-child,
+  table th:first-child {
+    padding-left: 10px; 
+  }
+  th {
+    font-weight: bold;
+    background-color: #f2f2f2;
+    margin-bottom: 10px;
+    border-radius: 2px;
+  }

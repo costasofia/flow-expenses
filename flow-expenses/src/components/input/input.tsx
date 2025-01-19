@@ -6,9 +6,10 @@ interface InputProps {
   name: string;
   autoComplete: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string
 }
 
-function Input({ label, type, name, autoComplete, onChange }: InputProps) {
+function Input({ label, type, name, autoComplete, onChange, value }: InputProps) {
   return (
     <div>
       <label>{label}</label>
@@ -17,6 +18,7 @@ function Input({ label, type, name, autoComplete, onChange }: InputProps) {
         name={name}
         autoComplete={autoComplete}
         onChange={onChange}
+        value={value}
       ></input>
     </div>
   );

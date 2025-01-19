@@ -1,64 +1,90 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "name": "Sofia",
-            "email": "sofia99costa@gmail.com",
-            "password": 123456789
-        },
-        {
-            "id": 2,
-            "name": "Maria",
-            "email": "mariacg@gmail.com",
-            "password": 1234567890
-        }
-    ],
-    "categories": [
-        {
-            "id": 1,
-            "name": "Saúde"
-        },
-        {
-            "id": 2,
-            "name": "Educação"
-        },
-        {
-            "id": 3,
-            "name": "Alimentação"
-        },
-        {
-            "id": 4,
-            "name": "Laser"
-        }, 
-        {
-            "id": 5,
-            "name": "Investimentos"
-        }, 
-        {
-            "id": 6,
-            "name": "Transferências"
-        },
-        {
-            "id": 7,
-            "name": "Investimento"
-        }
-    ],
-    "expenses": [
-        {
-            "id": 1,
-            "value": 60,
-            "date": "16/01/2025",
-            "description": "Consulta de dentária",
-            "idCategories": "1"
-        }   
-    ], 
-    "receipts":[
-        {
-            "id": 1,
-            "value": 20,
-            "date": "17/01/2025",
-            "description": "Jantar",
-            "idCategories": "6"
-        }   
-    ]
+  "users": [
+    {
+      "id": 1,
+      "name": "Sofia",
+      "email": "sofia99costa@gmail.com",
+      "password": 123456789
+    },
+    {
+      "id": 2,
+      "name": "Maria",
+      "email": "mariacg@gmail.com",
+      "password": 1234567890
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Saúde"
+    },
+    {
+      "id": 2,
+      "name": "Educação"
+    },
+    {
+      "id": 3,
+      "name": "Alimentação"
+    },
+    {
+      "id": 4,
+      "name": "Lazer"
+    },
+    {
+      "id": 5,
+      "name": "Investimentos"
+    },
+    {
+      "id": 6,
+      "name": "Transferências"
+    },
+    {
+      "id": 7,
+      "name": "Investimento"
+    },
+    {
+      "id": "60c9",
+      "name": "teste2"
+    },
+    {
+      "id": "b5ac",
+      "name": "teste4"
+    }
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "value": 60,
+      "date": "16/01/2025",
+      "description": "Consulta de dentária",
+      "idCategories": 1,
+      "idUser": 1
+    },
+    {
+      "id": 2,
+      "value": 80,
+      "date": "12/01/2025",
+      "description": "Consulta de dentária",
+      "idCategories": 1,
+      "idUser": 1
+    }
+  ],
+  "receipts": [
+    {
+      "id": 1,
+      "value": 20,
+      "date": "17/01/2025",
+      "description": "Jantar",
+      "idCategories": 6,
+      "idUser": 1
+    },
+    {
+      "id": 2,
+      "value": 40,
+      "date": "19/01/2025",
+      "description": "Jantar",
+      "idCategories": 6,
+      "idUser": 1
+    }
+  ]
 }

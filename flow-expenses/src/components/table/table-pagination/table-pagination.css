@@ -1,0 +1,25 @@
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+.text-page {
+  margin-right: 5px;
+  margin-left: 5px;
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
+  margin-top:10px;
+  font-weight: bold;
+  color: black;
+  
+}
+.pagination-button {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+}
