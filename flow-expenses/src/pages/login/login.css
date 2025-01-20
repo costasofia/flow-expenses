@@ -14,7 +14,7 @@ html {
   background-color: #f5f5f5;
 }
 
-form {
+.form-login {
   width: 100%;
   max-width: 380px;
   background: #ffffff;

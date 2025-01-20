@@ -11,8 +11,8 @@ interface InputProps {
 
 function Input({ label, type, name, autoComplete, onChange, value }: InputProps) {
   return (
-    <div>
-      <label>{label}</label>
+    <div className="input-container">
+      <label className="input-label">{label}</label>
       <input
         type={type}
         name={name}

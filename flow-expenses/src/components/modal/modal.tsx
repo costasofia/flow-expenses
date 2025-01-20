@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import './modal.css';
 
 interface ModalPropos {
@@ -6,11 +6,18 @@ interface ModalPropos {
     children: ReactNode,
     onClose: () => void;
     onSave:  (event: React.FormEvent) => void;
+    onOpen:() => void;
 }
-function Modal({title, children, onClose, onSave}: ModalPropos){
+function Modal({title, children, onClose, onSave, onOpen}: ModalPropos){
+
+  useEffect(() => {
+    if (onOpen) {
+      console.log('open')
+      onOpen(); 
+    }
+  }, [onOpen]);
     return (
-        <div
-        >
+        <div className="modal">
           <div className="modal-main">
             <div className="modal-head">
               <h1>{title}</h1>
@@ -18,10 +25,10 @@ function Modal({title, children, onClose, onSave}: ModalPropos){
             <div className="modal-body">{children}</div>
             <div className="btn-container">
               <button type="button" className="btn" onClick={onClose}>
-                Close
+                Cancelar
               </button>
               <button type="button" className="btn" onClick={onSave}>
-                save
+                Guardar
               </button>
             </div>
           </div>

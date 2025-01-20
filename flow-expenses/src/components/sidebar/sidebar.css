@@ -13,11 +13,12 @@ aside {
     z-index: 1000;
   }
   
-  /* Lista de itens */
+ 
   aside ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    border:none;
   }
   
   aside ul li {
@@ -39,6 +40,7 @@ aside {
     color: #4facfe;
   }
   
+ 
   
   aside ul li svg {
     margin-right: 10px;

@@ -7,9 +7,9 @@ import TablePagination from "./table-pagination/table-pagination";
 interface CashFLowProps<Transaction> {
   headers: string[];
   rows: Transaction[];
-  getCategoriesByName: (id: number) => string | undefined;
+  getCategoriesById: (id: number) => string | undefined;
 }
-function CashFlow({ headers, rows, getCategoriesByName }: CashFLowProps<Transaction>) {
+function CashFlow({ headers, rows, getCategoriesById }: CashFLowProps<Transaction>) {
 
     const itensPerPage = 2;
     const [currentPage, setCurrentPage] = useState(1);
@@ -49,7 +49,7 @@ function CashFlow({ headers, rows, getCategoriesByName }: CashFLowProps<Transact
               <td>{item.description}</td>
               <td>{item.value}€</td>
               <td>{item.date}</td>
-              <td>{getCategoriesByName(item.idCategories)}</td>
+              <td>{getCategoriesById(item.idCategories)}</td>
             </tr>
           );
         })}

@@ -80,7 +80,7 @@ function Login() {
 
   return (
     <div className="container-login">
-      <form onSubmit={submit}>
+      <form onSubmit={submit} className="form-login">
         <div className="icon-login">
           <IoPersonOutline size={48} />
         </div>

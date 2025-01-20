@@ -58,11 +58,8 @@ function Home() {
   }
 
   function convertDate(dateString: string): Date {
-    const [day, month, year] = dateString.split("/").map(Number);
-    return new Date(day, month - 1, year);
+    return new Date(dateString);
   }
-
- 
   useEffect(() => {
     const fetchData = async () => {
       const expenses = await getExpenses();
@@ -93,7 +90,7 @@ function Home() {
     fetchData();
   }, []);
 
-  function getCategoriesByName(id: number): string | undefined {
+  function getCategoriesById(id: number): string | undefined {
     const category = dataCategories.find((category) => category.id === id);
     return category?.name;
   }
@@ -105,7 +102,7 @@ function Home() {
   console.log(data);
   return (
     <div>
-      <Layout></Layout>
+      <Layout/>
       <div className="box">
         <div className="container-box">
           <div className="container-leftside">
@@ -160,7 +157,7 @@ function Home() {
         <div className="container-tables">
           <div className="container-tableLeft">
             <div className="section-table-left">
-             <CashFlow headers={headersCashFlow} rows={data} getCategoriesByName={getCategoriesByName}></CashFlow>
+             <CashFlow headers={headersCashFlow} rows={data} getCategoriesById={getCategoriesById}></CashFlow>
             </div>
           </div>
           <div className="container-tableRight">

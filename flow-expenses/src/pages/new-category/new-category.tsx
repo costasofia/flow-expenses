@@ -1,6 +1,6 @@
 interface NewCategoryProps {
   closeModal: () => void;
-  loadCategories: ()=>  void;
+  loadCategories: () => void;
 }
 import Modal from "../../components/modal/modal";
 import Input from "../../components/input/input";
@@ -19,24 +19,35 @@ function NewCategory({ closeModal, loadCategories }: NewCategoryProps) {
 
   const onSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    try{
-        const response = await axios.post('http://localhost:3000/categories/',{
-            name: formData.name
-        });
-        setResponse(response.data)
-    }catch(e){
-        console.log('error', e)
-    }finally{
-        closeModal();
-        loadCategories();
+    try {
+      const response = await axios.post("http://localhost:3000/categories/", {
+        name: formData.name,
+      });
+      setResponse(response.data);
+    } catch (e) {
+      console.log("error", e);
+    } finally {
+      closeModal();
+    
     }
   };
 
+  function resetForm(){
+    setFormData({
+      name: ""
+    });
+  }
+  function handleOpenModal() {
+    
+      resetForm(); 
+    
+  }
   return (
     <Modal
       title="Adicionar nova categoria"
       onClose={closeModal}
       onSave={onSubmit}
+      onOpen={handleOpenModal}
     >
       <form>
         <Input

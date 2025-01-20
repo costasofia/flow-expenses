@@ -15,9 +15,9 @@ export interface Categories {
 
 export interface Expenses {
   id: number;
-  value: number;
+  value: number | string;
   date: string;
   description: string;
-  idCategories: number;
+  idCategories: number ;
   idUser: number;
 }
