@@ -83,6 +83,49 @@ function NewExpense({ closeModal, idExpense }: NewCategoryProps) {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
+  useEffect(() => {
+    if (idExpense && dataCategories.length > 0) {
+      const fetchExpense = async () => {
+        const expenseResponse = await axios.get(
+          `http://localhost:3000/expenses/${idExpense}`
+        );
+        const { description, value, idCategories, date } = expenseResponse.data;
+
+        setFormData({
+          description,
+          value,
+          idCategories,
+          date,
+          idUser: id,
+        });
+
+        const selectedCategoryOption = dataCategories.find(
+          (category) => category.id === idCategories
+        );
+
+        setSelectedOption(
+          selectedCategoryOption
+            ? {
+                label: selectedCategoryOption.name,
+                value: selectedCategoryOption.id,
+              }
+            : { label: "Selecione uma opção", value: 0 }
+        );
+      };
+
+      fetchExpense();
+    }
+  }, [idExpense, dataCategories.length]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const categories = await getCategories();
+      setDataCategories(categories);
+    };
+
+    fetchData();
+  }, []);
+
   const onSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     try {
@@ -114,41 +157,7 @@ function NewExpense({ closeModal, idExpense }: NewCategoryProps) {
       closeModal();
     }
   };
-  useEffect(() => {
-    if (idExpense && dataCategories.length > 0) {
-      const fetchExpense = async () => {
-        const expenseResponse = await axios.get(
-          `http://localhost:3000/expenses/${idExpense}`
-        );
-        const { description, value, idCategories, date } = expenseResponse.data;
 
-        setFormData({
-          description,
-          value,
-          idCategories,
-          date,
-          idUser: id,
-        });
-
-        const selectedCategoryOption = dataCategories.find(
-          (category) => category.id === idCategories
-        );
-
-        setSelectedOption(selectedCategoryOption?.name || "Selecione uma opção");
-      };
-
-      fetchExpense();
-    }
-  }, [idExpense, dataCategories.length]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const categories = await getCategories();
-      setDataCategories(categories);
-    };
-
-    fetchData();
-  }, []);
   return (
     <Modal
       title="Adicionar nova despesa"
@@ -181,13 +190,14 @@ function NewExpense({ closeModal, idExpense }: NewCategoryProps) {
           onChange={handleChange}
           value={formData.date || ""}
         />
-         <Select
+        <Select
+          label="Selecione a categoria"
           options={dataCategories.map((category) => ({
-            label: category.name, // Exibindo o nome da categoria
-            value: category.id, // O id da categoria como value
+            label: category.name,
+            value: category.id,
           }))}
-          value={selectedOption} // Usando o id da categoria selecionada
-          onChange={selectAnOption} // Alterando a categoria selecionada
+          selectedOption={selectedOption}
+          onChange={(option) => selectAnOption(option)}
         />
       </form>
     </Modal>

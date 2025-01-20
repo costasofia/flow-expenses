@@ -8,7 +8,7 @@ function Layout() {
   }
   function handleLogout() {
     localStorage.removeItem("idUser");
-    console.log("idUser após logout:", localStorage.getItem("idUser")); // Deve ser null
+    console.log("idUser após logout:", localStorage.getItem("idUser")); 
     window.location.href = "/login";
   }
   return (
